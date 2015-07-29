@@ -2,11 +2,11 @@
 
 Main components:
 
-## dualRoute(<appOrPage>, <path>, <handler>)
+## dualRoute(\<appOrPage>, \<path>, \<handler>)
 
 Create a GET request route in an express or page.js app.
 
-## dualHandler(<render>, <init>)
+## dualHandler(\<render>, \<init>)
 
 Create a route handler function for GET request. It's assumed in the browser that the handler is for a page.js route and on the server it's for an express route.
 
