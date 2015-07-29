@@ -1,13 +1,18 @@
 var express = require('express')
 var ecstatic = require('ecstatic')
-var home = require('./home/server')
-var item = require('./item/server')
+
+require('./lib/require-jade')
 
 var app = express()
+var dual = require('./lib/dual')(app)
+
+var home = require('./home')
+var item = require('./item')
+
 var api = require('./api')
 
-home(app, api)
-item(app, api)
+home(dual, api)
+item(dual, api)
 
 app.use(ecstatic({root: __dirname + '/public'}))
 
