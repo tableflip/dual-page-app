@@ -1,17 +1,17 @@
 var render = require('./render')
 var tpl = require('./templates/content.jade')
+var dualRoute = require('../lib/dual-route')
+var dualHandler = require('../lib/dual-handler')
 
 module.exports = function (page, api) {
-  page('/', function (ctx) {
-    render(ctx, api, tpl, function (err, html) {
-      document.body.innerHTML = html
+  dualRoute(page, '/', dualHandler(render.bind(null, api, tpl), init))
 
-      var link = document.querySelector('a[href="#"]')
+  function init (ctx) {
+    var link = document.querySelector('a[href="#"]')
 
-      link.addEventListener('click', function (e) {
-        e.preventDefault()
-        page('/item/138')
-      })
+    link.addEventListener('click', function (e) {
+      e.preventDefault()
+      page('/item/138')
     })
-  })
+  }
 }

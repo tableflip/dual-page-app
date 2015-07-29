@@ -1,3 +1,3 @@
-module.exports = function (ctx, api, tpl, cb) {
+module.exports = function (api, tpl, ctx, cb) {
   cb(null, tpl())
 }

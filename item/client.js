@@ -1,11 +1,8 @@
 var render = require('./render')
 var tpl = require('./templates/content.jade')
+var dualRoute = require('../lib/dual-route')
+var dualHandler = require('../lib/dual-handler')
 
 module.exports = function (page, api) {
-  page('/item/:itemId', function (ctx) {
-    render(ctx, api, tpl, function (err, html) {
-      document.body.innerHTML = html
-      console.log('Item detail page setup')
-    })
-  })
+  dualRoute(page, '/item/:itemId', dualHandler(render.bind(null, api, tpl)))
 }
