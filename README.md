@@ -6,10 +6,10 @@
 ```js
 var app = require('express')()
 var dual = require('./lib/dual')(app)
-var home = require('./home')
+var post = require('./post')
 
-// Setup homepage route for the server
-home(dual)
+// Setup blog post route for the server
+post(dual)
 
 app.listen(3000) // Start app
 ```
@@ -18,24 +18,25 @@ app.listen(3000) // Start app
 ```js
 var page = require('page')
 var dual = require('./lib/dual')(page)
-var home = require('./home')
+var post = require('./post')
 
-// Setup homepage route for the client
-home(dual)
+// Setup blog post route for the client
+post(dual)
 
 page() // Start app
 ```
 
-**home.js**
+**post.js**
 ```js
-var tpl = require('./home.jade')
+var tpl = require('./post.jade')
 
 module.exports = function (dual) {
-  // Attach to /
-  dual('/', render, init)
+  // Attach to /post/:id
+  dual('/post/:id', render, init)
 
   // Render the page
   function render (ctx, cb) {
+    var postId = ctx.params.id
     // Do async IO, eventually call cb with rendered HTML
     cb(null, tpl())
   }
@@ -46,7 +47,7 @@ module.exports = function (dual) {
 
     link.addEventListener('click', function (e) {
       e.preventDefault()
-      dual.page('/item/138')
+      dual.page('/post/138')
     })
   }
 }
