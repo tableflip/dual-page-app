@@ -4,8 +4,8 @@
 
 **server.js**
 ```js
-var express = require('express')
-var dual = require('./lib/dual')(express())
+var app = require('express')()
+var dual = require('./lib/dual')(app)
 var home = require('./home')
 
 // Setup homepage route for the server
