@@ -23,3 +23,5 @@ function render (ctx, cb) {
 The rendered HTML is either sent back from the server, or it replaces the page `<body>` depending on environment.
 
 The `init` function is called by the handler after rendering.
+
+Please see https://github.com/tableflip/dual-page-app/blob/master/home/client.js for an example.
